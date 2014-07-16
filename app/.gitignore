@@ -1,4 +1,7 @@
 /build
+
 /app/build
 /app/libs
 
+/app/src/app-release.apk
+/app/src/proguard-rules.pro
