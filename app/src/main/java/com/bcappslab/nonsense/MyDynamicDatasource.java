@@ -8,6 +8,7 @@ import java.util.Observable;
 public class MyDynamicDatasource implements Runnable {
 
     // following the androidplot tutorial on dynamic data
+    // Second comment for testing
 
     // encapsulates management of the observers watching the datasource for update events:
     class MyObservable extends Observable {
