@@ -3,5 +3,7 @@
 /app/build
 /app/libs
 
+/app/src/androidTest
+
 /app/src/app-release.apk
 /app/src/proguard-rules.pro
