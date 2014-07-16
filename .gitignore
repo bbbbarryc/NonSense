@@ -19,7 +19,10 @@ settings.gradle
 /app/build
 /app/libs
 
+/app/app.iml
+/app/proguard-rules.pro
 /app/app-release.apk
+
 
 /app/src/androidTest
 
