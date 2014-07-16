@@ -3,3 +3,6 @@
 /.idea/workspace.xml
 .DS_Store
 /build
+/libs
+/app/build
+/app/gradle
