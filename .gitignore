@@ -4,6 +4,15 @@
 .DS_Store
 /build
 /libs
-/app/build
+
 /app/gradle
+
+/app/build
 /app/libs
+
+/app/src/androidTest
+
+/app/src/app-release.apk
+/app/src/proguard-rules.pro
+
+/app/src/main/java/com.bcappslab.nonsense/testing
