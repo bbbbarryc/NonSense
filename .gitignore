@@ -19,9 +19,10 @@ settings.gradle
 /app/build
 /app/libs
 
+/app/app-release.apk
+
 /app/src/androidTest
 
-/app/src/app-release.apk
 /app/src/proguard-rules.pro
 
 /app/src/main/java/com.bcappslab.nonsense/testing
