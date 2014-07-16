@@ -5,6 +5,15 @@
 /build
 /libs
 
+/gradle
+build.gradle
+gradle.properties
+gradlew
+gradlew.bat
+local.properties
+NonSense.iml
+settings.gradle
+
 /app/gradle
 
 /app/build
