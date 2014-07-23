@@ -14,6 +14,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.bcappslab.nonsense.sensorclasses.GravitySensor;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -83,10 +85,15 @@ public class MainActivity2 extends Activity {
                 Log.d("MainActivity2.onCreate.setOnItemClickListener", "Name: " + sensorNames.get(position));
                 Log.d("MainActivity2.onCreate.setOnItemClickListener", "Type: " + sensorList.get(position).getType());
 
+                /*
                 Intent intent = new Intent(getApplicationContext(), GenericSensorClassActivity.class);
                 intent.putExtra(SENSOR_NAME, sensorNames.get(position));
                 intent.putExtra(SENSOR_TYPE, sensorList.get(position).getType());
 
+                startActivity(intent);
+                */
+
+                Intent intent = new Intent(getApplicationContext(), GravitySensor.class);
                 startActivity(intent);
             }
         });

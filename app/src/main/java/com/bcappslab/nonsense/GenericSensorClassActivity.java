@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -75,6 +76,7 @@ public class GenericSensorClassActivity extends Activity implements SensorEventL
 
         // Get the linear layout so you can populate it with the appropriate amount of textviews
         linearLayout = (LinearLayout) findViewById(R.id.sensor_linear_layout);
+
 
         beanLength = mySensor.updateBean().getValues().length;
         values = new float[beanLength];
@@ -186,7 +188,14 @@ public class GenericSensorClassActivity extends Activity implements SensorEventL
             seriesFormat.setPointLabelFormatter(new PointLabelFormatter());
             seriesFormat.configure(getApplicationContext(), R.xml.line_point_formatter_with_plf1);
 
+            /*
+            Paint paint = new Paint();
+            paint.setColor(Color.RED);
+            paint.setStrokeWidth(1);
+            */
+
             // add a series to the xplot
+            //seriesFormat.setLinePaint(paint);
             xyPlot.addSeries(series1, seriesFormat);
             xyPlot.addSeries(series2, seriesFormat);
             xyPlot.addSeries(series3, seriesFormat);

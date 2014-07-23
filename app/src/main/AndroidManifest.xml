@@ -21,8 +21,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".testing.TestSensorClasser"/>
         <activity android:name=".GenericSensorClassActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden"/>
+        <activity android:name=".sensorclasses.GravitySensor"
+            android:label="@string/sensor_gravity"
             android:screenOrientation="portrait"
             android:configChanges="keyboardHidden"/>
     </application>
