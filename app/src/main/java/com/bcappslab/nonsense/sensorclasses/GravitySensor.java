@@ -7,6 +7,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -40,17 +41,12 @@ public class GravitySensor extends GenericSensor {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_gravity_sensor);
 
         // Inherited from GenericSensor
         sensorName = getString(R.string.sensor_gravity);
         sensorType = Sensor.TYPE_GRAVITY;
-
-        // Inherited from GenericSensor
-        // Start the sensor manager
-        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        sensor = sensorManager.getDefaultSensor(sensorType);
 
         // Inherited from GenericSensor
         linearLayout = (LinearLayout) findViewById(R.id.GravityLinearLayout);
@@ -60,13 +56,16 @@ public class GravitySensor extends GenericSensor {
         // Inherited from GenericSensor
         xyPlot = (XYPlot) findViewById(R.id.GenericXYPlot);
 
-
         // This own class instantiations
         xValView = (TextView) findViewById(R.id.gravityX);
         yValView = (TextView) findViewById(R.id.gravityY);
         zValView = (TextView) findViewById(R.id.gravityZ);
         magValView = (TextView) findViewById(R.id.gravityMagnitude);
 
+        // Calling this superclass AFTER the name and type have been established??
+        // The superclass starts the sensor manager with this information
+        // Kind of confusing.  Hard to trace.  Saves lines of code though.
+        super.onCreate(savedInstanceState);
 
     }
 

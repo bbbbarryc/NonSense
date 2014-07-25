@@ -17,7 +17,7 @@ import com.bcappslab.nonsense.SensorClass;
 /**
  * Created by Barry on 2014-07-22.
  */
-public class GenericSensor extends Activity implements SensorEventListener {
+public abstract class GenericSensor extends Activity implements SensorEventListener {
 
     protected SensorManager sensorManager;
     protected Sensor sensor;
@@ -38,7 +38,7 @@ public class GenericSensor extends Activity implements SensorEventListener {
     protected float[][] plotValues;
     protected long[] timeStamps;
 
-    // the length of th ebean is defined by the number of values the sensor throws
+    // the length of the bean is defined by the number of values the sensor throws
     protected int beanLength;
     protected float values[];
 

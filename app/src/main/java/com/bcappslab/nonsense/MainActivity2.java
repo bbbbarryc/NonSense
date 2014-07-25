@@ -14,7 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.bcappslab.nonsense.sensorclasses.GravitySensor;
+import com.bcappslab.nonsense.sensorclasses.*;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -37,8 +37,11 @@ public class MainActivity2 extends Activity {
     public static final String SENSOR_NAME = "SENSOR_NAME";
     public static final String SENSOR_TYPE = "SENSOR_TYPE";
 
+    // Will be used to launch the correct class
+    private Intent genericSensorIntent;
+
     // Recyclable toast
-    Toast toast;
+    private Toast toast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,24 +96,18 @@ public class MainActivity2 extends Activity {
                 startActivity(intent);
                 */
 
+                /*
                 Intent intent = new Intent(getApplicationContext(), GravitySensor.class);
                 startActivity(intent);
+                */
+
+                launchSensorClass(sensorList.get(position).getType());
             }
         });
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    protected void scanSensors() {
+    void scanSensors() {
         // Scan the sensors and populate lists.
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 
@@ -223,5 +220,75 @@ public class MainActivity2 extends Activity {
             toast = Toast.makeText(getApplicationContext(), deleted + " files deleted.", Toast.LENGTH_LONG);
         }
         toast.show();
+    }
+
+    private void launchSensorClass(int sensorType) {
+
+        switch (sensorType) {
+            case Sensor.TYPE_ACCELEROMETER:
+                genericSensorIntent = new Intent(getApplicationContext(), AccelerometerSensor.class);
+                break;
+            case Sensor.TYPE_AMBIENT_TEMPERATURE:
+                genericSensorIntent = new Intent(getApplicationContext(), AmbientTemperatureSensor.class);
+                break;
+            case Sensor.TYPE_GAME_ROTATION_VECTOR:
+                genericSensorIntent = new Intent(getApplicationContext(), GameRotationVectorSensor.class);
+                break;
+            case Sensor.TYPE_GEOMAGNETIC_ROTATION_VECTOR:
+                genericSensorIntent = new Intent(getApplicationContext(), GeomagneticRotationVectorSensor.class);
+                break;
+            case Sensor.TYPE_GRAVITY:
+                genericSensorIntent = new Intent(getApplicationContext(), GravitySensor.class);
+                break;
+            case Sensor.TYPE_GYROSCOPE:
+                genericSensorIntent = new Intent(getApplicationContext(), GyroscopeSensor.class);
+                break;
+            case Sensor.TYPE_GYROSCOPE_UNCALIBRATED:
+                genericSensorIntent = new Intent(getApplicationContext(), GyroscopeUncalibratedSensor.class);
+                break;
+            case Sensor.TYPE_LIGHT:
+                genericSensorIntent = new Intent(getApplicationContext(), LightSensor.class);
+                break;
+            case Sensor.TYPE_LINEAR_ACCELERATION:
+                genericSensorIntent = new Intent(getApplicationContext(), LinearAccelerationSensor.class);
+                break;
+            case Sensor.TYPE_MAGNETIC_FIELD:
+                genericSensorIntent = new Intent(getApplicationContext(), MagneticFieldSensor.class);
+                break;
+            case Sensor.TYPE_MAGNETIC_FIELD_UNCALIBRATED:
+                genericSensorIntent = new Intent(getApplicationContext(), MagneticFieldUncalibratedSensor.class);
+                break;
+            case Sensor.TYPE_ORIENTATION:
+                genericSensorIntent = new Intent(getApplicationContext(), OrientationSensor.class);
+                break;
+            case Sensor.TYPE_PRESSURE:
+                genericSensorIntent = new Intent(getApplicationContext(), PressureSensor.class);
+                break;
+            case Sensor.TYPE_PROXIMITY:
+                genericSensorIntent = new Intent(getApplicationContext(), ProximitySensor.class);
+                break;
+            case Sensor.TYPE_RELATIVE_HUMIDITY:
+                genericSensorIntent = new Intent(getApplicationContext(), RelativeHumiditySensor.class);
+                break;
+            case Sensor.TYPE_ROTATION_VECTOR:
+                genericSensorIntent = new Intent(getApplicationContext(), RotationVectorSensor.class);
+                break;
+            case Sensor.TYPE_SIGNIFICANT_MOTION:
+                genericSensorIntent = new Intent(getApplicationContext(), SignificantMotionSensor.class);
+                break;
+            case Sensor.TYPE_STEP_COUNTER:
+                genericSensorIntent = new Intent(getApplicationContext(), StepCounterSensor.class);
+                break;
+            case Sensor.TYPE_STEP_DETECTOR:
+                genericSensorIntent = new Intent(getApplicationContext(), StepDetectorSensor.class);
+                break;
+            case Sensor.TYPE_TEMPERATURE:
+                genericSensorIntent = new Intent(getApplicationContext(), TemperatureSensor.class);
+                break;
+        }
+
+        if (genericSensorIntent != null) {
+            startActivity(genericSensorIntent);
+        }
     }
 }
