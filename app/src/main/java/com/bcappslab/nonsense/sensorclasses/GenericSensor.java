@@ -6,6 +6,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
@@ -29,6 +30,7 @@ public abstract class GenericSensor extends Activity implements SensorEventListe
     protected int sensorValueLength;
     protected String fileName;
     protected int bufferSize;
+    protected int plotSize;
 
     // To update the UI thread
     // Also holds plotting buffer
@@ -56,6 +58,8 @@ public abstract class GenericSensor extends Activity implements SensorEventListe
         // sensorType is set in the child class
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         sensor = sensorManager.getDefaultSensor(sensorType);
+
+
     }
 
     @Override
@@ -80,4 +84,8 @@ public abstract class GenericSensor extends Activity implements SensorEventListe
 
     }
 
+
+
 }
+
+
