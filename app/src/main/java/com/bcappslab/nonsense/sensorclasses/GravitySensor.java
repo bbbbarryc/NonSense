@@ -50,8 +50,11 @@ public class GravitySensor extends GenericSensor {
         // Inherited from GenericSensor
         sensorName = getString(R.string.sensor_gravity);
         sensorType = Sensor.TYPE_GRAVITY;
-        sensorValueLength = 3;
-        myBuffer = new MyBuffer(1000,3);
+        bufferSize = 50;
+        sensorValueLength = 4; // x, y, z, magnitude
+        fileName = getString(R.string.log_gravity);
+
+        myBuffer = new MyBuffer(this, fileName, bufferSize, sensorValueLength);
 
         // Inherited from GenericSensor
         linearLayout = (LinearLayout) findViewById(R.id.GravityLinearLayout);
@@ -89,7 +92,7 @@ public class GravitySensor extends GenericSensor {
         zValView.setText("z: " + zVal);
 
 
-        myBuffer.add(event.timestamp, event.values[0], event.values[1], event.values[2]);
+        myBuffer.add(event.timestamp, xVal, yVal, zVal, magVal);
 
 
     }

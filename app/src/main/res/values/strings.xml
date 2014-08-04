@@ -26,4 +26,7 @@
     <string name="sensor_step_detector">Step Detector</string>
     <string name="sensor_temperature">Temperature Sensor</string>
 
+    <string name="log_gravity">log_gravity.txt</string>
+
+
 </resources>

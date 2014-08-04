@@ -27,6 +27,8 @@ public abstract class GenericSensor extends Activity implements SensorEventListe
     protected String sensorName;
     protected int sensorType;
     protected int sensorValueLength;
+    protected String fileName;
+    protected int bufferSize;
 
     // To update the UI thread
     // Also holds plotting buffer

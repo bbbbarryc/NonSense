@@ -1,10 +1,12 @@
 package com.bcappslab.nonsense;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -205,7 +207,8 @@ public class MainActivity2 extends Activity {
 
     private void clearLogs() {
         int deleted = 0;
-        Log.d("MainActivity2", "Clear logs!!!!");
+        //Log.d("MainActivity2", "Clear logs.");
+        //File filesDir = getApplicationContext().getFilesDir();
         File filesDir = getApplicationContext().getFilesDir();
         if (filesDir.isDirectory()) {
             for (File item : filesDir.listFiles()) {
@@ -291,4 +294,10 @@ public class MainActivity2 extends Activity {
             startActivity(genericSensorIntent);
         }
     }
+
+    public Context getMainApplicationContext() {
+        return getApplicationContext();
+    }
+
+
 }
