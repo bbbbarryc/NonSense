@@ -27,6 +27,7 @@
     <string name="sensor_temperature">Temperature Sensor</string>
 
     <string name="log_gravity">log_gravity.txt</string>
+    <string name="log_linear_acceleration">log_linear_acceleration.txt</string>
 
 
 </resources>

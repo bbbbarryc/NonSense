@@ -34,8 +34,6 @@ import java.util.List;
  */
 public class GravitySensor extends GenericSensor {
 
-    private MyBuffer myBuffer;
-
     private TextView magValView;
     private TextView xValView;
     private TextView yValView;
@@ -58,7 +56,6 @@ public class GravitySensor extends GenericSensor {
         plotSize = 20;
         sensorValueLength = 4; // x, y, z, magnitude
         fileName = getString(R.string.log_gravity);
-
         myBuffer = new MyBuffer(this, fileName, sensorValueLength, bufferSize, plotSize);
 
         // Inherited from GenericSensor
@@ -110,7 +107,6 @@ public class GravitySensor extends GenericSensor {
 
     private class MyAsynchronousUpdater extends AsyncTask<Void, Void, XYPlot> {
 
-
         @Override
         protected XYPlot doInBackground(Void... params) {
             xyPlot.clear();
@@ -129,7 +125,7 @@ public class GravitySensor extends GenericSensor {
 
             for (int i = 0; i < plotSize; i++) {
                 timeValueList.add((timeValues[i]-offset)/1000000);
-                Log.d("GravitySensor", "timevalue: " + ((timeValues[i]-offset)/1000000));
+                //Log.d("GravitySensor", "timevalue: " + ((timeValues[i]-offset)/1000000));
                 for (int j = 0; j < sensorValues.length; j++) {
                     if (j==0)
                         xValueList.add(sensorValues[j][i]);
@@ -153,8 +149,6 @@ public class GravitySensor extends GenericSensor {
             seriesFormat.setPointLabelFormatter(new PointLabelFormatter());
             seriesFormat.configure(getApplicationContext(), R.xml.line_point_formatter_with_plf1);
 
-
-
 //            Paint paint = new Paint();
 //            paint.setStrokeWidth(1);
 //            paint.setColor(Color.RED);
@@ -171,9 +165,6 @@ public class GravitySensor extends GenericSensor {
             xyPlot.setRangeTopMin(10);
             xyPlot.setTicksPerRangeLabel(2);
             xyPlot.getGraphWidget().setDomainLabelOrientation(-45);
-
-            //xyPlot.clear();
-//            xyPlot.redraw();
 
             return xyPlot;
         }
