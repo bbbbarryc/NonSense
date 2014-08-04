@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.androidplot.xy.XYPlot;
+import com.bcappslab.nonsense.MyBuffer;
 import com.bcappslab.nonsense.R;
 
 import org.w3c.dom.Text;
@@ -28,6 +29,8 @@ public class GravitySensor extends GenericSensor {
     private int bufferSize = 10;
     private int eventValueSize = 3; // 3 is the number of event values this sensor has
     private float[][] eventValues = new float[bufferSize][eventValueSize];
+
+    private MyBuffer myBuffer;
 
     private TextView magValView;
     private TextView xValView;
@@ -47,6 +50,8 @@ public class GravitySensor extends GenericSensor {
         // Inherited from GenericSensor
         sensorName = getString(R.string.sensor_gravity);
         sensorType = Sensor.TYPE_GRAVITY;
+        sensorValueLength = 3;
+        myBuffer = new MyBuffer(1000,3);
 
         // Inherited from GenericSensor
         linearLayout = (LinearLayout) findViewById(R.id.GravityLinearLayout);
@@ -62,9 +67,10 @@ public class GravitySensor extends GenericSensor {
         zValView = (TextView) findViewById(R.id.gravityZ);
         magValView = (TextView) findViewById(R.id.gravityMagnitude);
 
+
         // Calling this superclass AFTER the name and type have been established??
         // The superclass starts the sensor manager with this information
-        // Kind of confusing.  Hard to trace.  Saves lines of code though.
+        // Kind of confusing.  Hard to trace.  Look into a change.
         super.onCreate(savedInstanceState);
 
     }
@@ -81,6 +87,11 @@ public class GravitySensor extends GenericSensor {
         xValView.setText("x: " + xVal);
         yValView.setText("y: " + yVal);
         zValView.setText("z: " + zVal);
+
+
+        myBuffer.add(event.timestamp, event.values[0], event.values[1], event.values[2]);
+
+
     }
 
     @Override

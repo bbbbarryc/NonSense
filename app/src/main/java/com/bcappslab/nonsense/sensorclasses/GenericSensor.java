@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 
 import com.androidplot.xy.XYPlot;
 import com.bcappslab.nonsense.MyBean;
+import com.bcappslab.nonsense.MyBuffer;
 import com.bcappslab.nonsense.SensorClass;
 
 /**
@@ -25,9 +26,12 @@ public abstract class GenericSensor extends Activity implements SensorEventListe
 
     protected String sensorName;
     protected int sensorType;
+    protected int sensorValueLength;
 
     // To update the UI thread
+    // Also holds plotting buffer
     protected MyBean myBean;
+    protected MyBuffer myBuffer;
 
     // To get the linear layout and inflater
     protected LinearLayout linearLayout;
