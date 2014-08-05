@@ -5,6 +5,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -35,10 +36,14 @@ public class LinearAccelerationSensor extends GenericSensor{
     private float yVal;
     private float zVal;
 
+    private long offset;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         setContentView(R.layout.activity_linear_acceleration_sensor);
+
+        offset = System.currentTimeMillis() * 1000000L;
 
         // Inherited from GenericSensor
         sensorName = getString(R.string.sensor_linear_acceleration);
@@ -78,7 +83,11 @@ public class LinearAccelerationSensor extends GenericSensor{
         yValView.setText("y: " + yVal);
         zValView.setText("z: " + zVal);
 
-        myBuffer.add(event.timestamp, xVal, yVal, zVal, magVal);
+
+        long offsetTimestamp = event.timestamp - offset;
+        //Log.d("LinearAccelerationSensor","time: " + event.timestamp + ", offset: " + offset + ", offsetTimestamp: " + offsetTimestamp + ", currentMillis: " + System.currentTimeMillis());
+
+        myBuffer.add(offsetTimestamp, xVal, yVal, zVal, magVal);
 
         if (myBuffer.getIterator() % plotSize == 0){
             new MyAsynchronousUpdater().execute();

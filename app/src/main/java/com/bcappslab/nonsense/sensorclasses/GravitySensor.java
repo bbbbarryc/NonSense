@@ -44,6 +44,8 @@ public class GravitySensor extends GenericSensor {
     private float yVal;
     private float zVal;
 
+    private long offset;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
